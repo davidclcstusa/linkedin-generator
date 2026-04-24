@@ -47,12 +47,22 @@ const editMessage = (messageId, text, extra = {}) =>
 
 function leerBorradoresDeGitHub(fecha) {
     return new Promise((resolve, reject) => {
-        const url = `https://raw.githubusercontent.com/davidclcstusa/linkedin-generator/main/outputs/${fecha}_borrador.md`;
-        https.get(url, res => {
+        const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+        const options = {
+            hostname: 'api.github.com',
+            path: `/repos/davidclcstusa/linkedin-generator/contents/outputs/${fecha}_borrador.md`,
+            method: 'GET',
+            headers: {
+                'User-Agent': 'linkedin-generator-bot',
+                'Accept': 'application/vnd.github.raw+json',
+                ...(GITHUB_TOKEN ? { Authorization: `Bearer ${GITHUB_TOKEN}` } : {})
+            }
+        };
+        https.get(options, res => {
             let data = '';
             res.on('data', c => data += c);
             res.on('end', () => {
-                if (res.statusCode !== 200) return reject(new Error(`GitHub 404: ${fecha}_borrador.md`));
+                if (res.statusCode !== 200) return reject(new Error(`GitHub ${res.statusCode}: ${fecha}_borrador.md`));
                 resolve(extraerBorradores(data));
             });
         }).on('error', reject);
