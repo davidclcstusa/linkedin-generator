@@ -5,6 +5,7 @@
   "main": "approval/telegram_bot.js",
   "scripts": {
     "start": "node approval/webhook_bot.js",
+    "enviar": "node approval/send_borradores.js",
     "aprobar": "node approval/telegram_bot.js",
     "auth": "node auth/linkedin_oauth.js"
   },
