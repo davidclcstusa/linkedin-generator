@@ -1,0 +1,16 @@
+{
+  "name": "linkedin-generator",
+  "version": "1.0.0",
+  "description": "Generador automático de posts LinkedIn para David Pereira",
+  "main": "approval/telegram_bot.js",
+  "scripts": {
+    "aprobar": "node approval/telegram_bot.js",
+    "auth": "node auth/linkedin_oauth.js"
+  },
+  "type": "commonjs",
+  "dependencies": {
+    "axios": "^1.15.2",
+    "dotenv": "^16.4.5",
+    "node-telegram-bot-api": "^0.67.0"
+  }
+}
