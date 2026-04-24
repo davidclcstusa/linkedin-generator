@@ -4,6 +4,7 @@
   "description": "Generador automático de posts LinkedIn para David Pereira",
   "main": "approval/telegram_bot.js",
   "scripts": {
+    "start": "node approval/webhook_bot.js",
     "aprobar": "node approval/telegram_bot.js",
     "auth": "node auth/linkedin_oauth.js"
   },
