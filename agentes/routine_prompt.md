@@ -32,7 +32,7 @@ Reglas: sin palabras prohibidas de voz.md, 1 dato concreto, URL fuente completa,
 
 ━━━ PASO 4 — SUBIR A GITHUB ━━━
 Guarda el resultado en outputs/YYYY-MM-DD_borrador.md (fecha real de hoy).
-Súbelo a GitHub con este script Python:
+IMPORTANTE: NO uses git add/commit/push ni MCP tools para subir el archivo. El único método que funciona es este script Python — ejecútalo directamente sin intentar otras vías:
 
 import base64, json, urllib.request, datetime
 
@@ -59,4 +59,5 @@ print(f"Subido: {json.loads(urllib.request.urlopen(req).read())['content']['html
 Guarda ese código como /tmp/upload.py y ejecútalo: python3 /tmp/upload.py
 
 ━━━ IMPORTANTE ━━━
-- Nunca inventes datos. Posts en español. No uses git push.
+- Nunca inventes datos. Posts en español.
+- El único método de escritura en el repo es el script Python del PASO 4. No intentes git ni MCP.
