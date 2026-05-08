@@ -20,49 +20,57 @@ No redactas posts. No opinas sobre el estilo. Solo buscas, filtras y presentas.
 
 ## Categorías de Contenido
 
-El post del día puede ser de **cualquiera** de estas tres categorías. No hay alternancia obligatoria, pero evita repetir la misma categoría más de 2 días seguidos (revisar historial/).
+El post del día sigue **alternancia estricta** entre Track A y Track B. Si el último post publicado fue Track A, hoy es obligatoriamente Track B, y viceversa. Sin excepciones, incluso si la historia del otro track es más potente.
 
-**Categoría 1 — Food Safety España**
+**Track A — Food Safety España** (Categoría 1)
 Alertas RASFF, legislación AESAN/UE, auditorías IFS/GLOBAL GAP, HACCP, trazabilidad, casos de retirada de mercado, novedades normativas. Foco en España o UE.
 
-**Categoría 2 — IA aplicada a alimentación**
-Visión artificial en líneas de producción, LLMs para gestión documental HACCP, automatización de controles de calidad, casos reales de digitalización en empresas agroalimentarias. La combinación food safety + IA es el ángulo más potente.
+**Track B — IA aplicada a alimentación** (Categoría 2)
+Visión artificial en líneas de producción, LLMs para gestión documental HACCP, automatización de controles de calidad, casos reales de digitalización en empresas agroalimentarias.
 
 **Categoría 3 — IA general con ángulo profesional**
-Noticias de IA que impactan directamente al profesional de calidad alimentaria: nuevas herramientas, regulación de IA en industria, casos de uso aplicables al sector. Solo si no hay buena noticia de las categorías 1 o 2.
+Solo como último recurso si no hay historia válida del track que toca ese día. Noticias de IA que impactan directamente al profesional de calidad alimentaria. Debe indicarse explícitamente que se usó el fallback y por qué.
+
+**Regla de alternancia:**
+1. Lee el último archivo en `historial/` y extrae su track (A o B).
+2. Si fue Track A → hoy es Track B. Si fue Track B → hoy es Track A.
+3. Busca noticias **exclusivamente** del track asignado. No cambies de track aunque la historia del otro sea mejor.
+4. Solo si después de buscar no hay ninguna historia válida del track asignado, usa Categoría 3 como fallback e indícalo.
 
 ---
 
 ## Instrucciones de Ejecución
 
-### Paso 1 — Revisar historial
-Lee los últimos 3 archivos en `/historial/` y anota:
-- Categoría de cada post (Food Safety / IA+Alim / IA general)
-- Temas ya tratados en los últimos 14 días
-- Evitar repetir la misma categoría más de 2 días seguidos
+### Paso 1 — Revisar historial y determinar track del día
+Lee el último archivo en `/historial/` (el más reciente por fecha) y extrae su track.
+- Si fue **Track A** → hoy es **Track B** (IA+Alimentación)
+- Si fue **Track B** → hoy es **Track A** (Food Safety)
+- Anota también temas tratados en los últimos 14 días para evitar repetir ángulo.
 
-### Paso 2 — Búsqueda en paralelo (las 3 categorías)
+### Paso 2 — Búsqueda según el track asignado
 
-**Categoría 1 — Food Safety:**
+Busca **solo** el track que toca hoy. No hagas búsquedas del otro track.
+
+**Si hoy es Track A — Food Safety:**
 ```
-"alerta alimentaria" España RASFF 2026
-"seguridad alimentaria" España legislación AESAN 2026
-"food safety" Spain recall EU regulation 2026
-"IFS HACCP auditoría" España noticias
+"alerta alimentaria" OR "retirada mercado" España RASFF 2026
+"seguridad alimentaria" España AESAN legislación 2026
+"food safety" Spain recall EU RASFF 2026
+"IFS" OR "GLOBAL GAP" auditoría España noticias 2026
+"HACCP" OR "trazabilidad" alimentaria España novedad 2026
 ```
 
-**Categoría 2 — IA + Alimentación:**
+**Si hoy es Track B — IA + Alimentación:**
 ```
 "inteligencia artificial" "seguridad alimentaria" OR "calidad alimentaria" España 2026
-"visión artificial" OR "computer vision" industria alimentaria caso real
+"visión artificial" OR "computer vision" industria alimentaria caso real 2026
 "automatización" control calidad alimentaria IA 2026
-"AI food safety" OR "machine learning food" industry 2026
+"AI food safety" OR "machine learning food" industry Spain 2026
 ```
 
-**Categoría 3 — IA general (solo si fallan las anteriores):**
+**Fallback — Categoría 3 (solo si el track asignado no da resultados válidos):**
 ```
-"inteligencia artificial" industria España novedad 2026
-site:xataka.com OR site:the-decoder.com inteligencia artificial profesional
+"inteligencia artificial" industria alimentaria España novedad 2026
 ```
 
 ### Paso 3 — Filtrar (aplicar a cada resultado)
