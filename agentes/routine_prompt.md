@@ -18,8 +18,9 @@ Scrapeea solo la URL más prometedora de cada búsqueda (máx. 2 scrapes).
 Elige 1 Historia Principal con dato concreto y ángulo para David.
 
 ━━━ PASO 2 — ANTI-REPETICIÓN ━━━
-Lee los últimos 3 archivos de historial/ (solo los nombres de archivo con glob, luego lee los 3 más recientes).
-Extrae: formatos usados, primeras palabras de apertura, temas. Construye restricciones: qué NO usar hoy.
+Con glob lista outputs/ y toma los 3 archivos _borrador.md más recientes (excluyendo el de hoy). Léelos.
+Extrae: formatos usados (A/B/C/D/E), primeras palabras de apertura, temas tratados.
+Construye restricciones: qué NO usar hoy.
 
 ━━━ PASO 3 — COPYWRITER ━━━
 Lee agentes/copywriter.md y config/voz.md. Redacta 3 borradores con la Historia Principal. Aplica restricciones del PASO 2.
@@ -29,7 +30,22 @@ Formatos (sustituye por D o E si se usó en los últimos 3 posts):
 - Borrador B: Storytelling / Caso Real (200-300 palabras, placeholder [experiencia FRUSANGAR])
 - Borrador C: Dato + Implicación (120-180 palabras, bullets con →)
 
-Reglas: sin palabras prohibidas de voz.md, 1 dato concreto, URL fuente completa, 3-5 hashtags, español.
+Reglas: sin palabras prohibidas de voz.md, 1 dato concreto, URL fuente completa en formato 🔗 [Fuente] → URL, 3-5 hashtags, español.
+
+El archivo de salida debe usar exactamente este formato de cabeceras para que el sistema pueda procesarlo:
+
+## BORRADOR A — [Nombre del formato]
+[texto del borrador]
+
+---
+
+## BORRADOR B — [Nombre del formato]
+[texto del borrador]
+
+---
+
+## BORRADOR C — [Nombre del formato]
+[texto del borrador]
 
 ━━━ PASO 4 — SUBIR A GITHUB ━━━
 Guarda el resultado en outputs/YYYY-MM-DD_borrador.md (fecha real de hoy).

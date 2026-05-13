@@ -86,19 +86,25 @@ function extraerBorradores(contenido) {
 
 // ── LinkedIn publisher ────────────────────────────────────────────────────────
 
+function extraerURL(texto) {
+    const match = texto.match(/https?:\/\/[^\s)>]+/);
+    return match ? match[0].replace(/[.,;]+$/, '') : null;
+}
+
 function publicarEnLinkedIn(texto) {
     return new Promise((resolve, reject) => {
         if (!LINKEDIN_ACCESS_TOKEN) return reject(new Error('Falta LINKEDIN_ACCESS_TOKEN'));
         const authorUrn = LINKEDIN_PERSON_URN || 'urn:li:person:M77KqEbPeE';
+        const url = extraerURL(texto);
+        const shareContent = {
+            shareCommentary: { text: texto },
+            shareMediaCategory: url ? 'ARTICLE' : 'NONE'
+        };
+        if (url) shareContent.media = [{ status: 'READY', originalUrl: url }];
         const body = JSON.stringify({
             author: authorUrn,
             lifecycleState: 'PUBLISHED',
-            specificContent: {
-                'com.linkedin.ugc.ShareContent': {
-                    shareCommentary: { text: texto },
-                    shareMediaCategory: 'NONE'
-                }
-            },
+            specificContent: { 'com.linkedin.ugc.ShareContent': shareContent },
             visibility: { 'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC' }
         });
         const req = https.request({
